@@ -1,0 +1,55 @@
+---
+import SEO from '../components/SEO.astro';
+import '../styles/base.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+  publishDate?: Date;
+  modifiedDate?: Date;
+  tags?: string[];
+}
+
+const { 
+  title, 
+  description = "Effective Matching",
+  image,
+  article,
+  publishDate,
+  modifiedDate,
+  tags
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/images/profile.jpg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta name="generator" content={Astro.generator} />
+  
+    <SEO 
+      title={title}
+      description={description}
+      image={image}
+      article={article}
+      publishDate={publishDate}
+      modifiedDate={modifiedDate}
+      tags={tags}
+    />
+  </head>
+
+  <body class="min-h-screen bg-white transition-colors duration-200"> 
+      <div class="flex-grow overflow-x-hidden">
+        <main class="container p-8">
+          <slot />
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
